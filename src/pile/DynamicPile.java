@@ -1,6 +1,12 @@
 package pile;
 
+import common.KnotList;
+
 public class DynamicPile<T> implements IPile<T> {
+
+    private KnotList<T> first;
+    private KnotList<T> last;
+    private int counter;
 
     @Override
     public void push(T obj) throws Exception {

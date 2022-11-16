@@ -1,5 +1,7 @@
 package list;
 
+import common.KnotList;
+
 public class LinkedListImpl<T> implements IList<T> {
 
     private KnotList<T> first;

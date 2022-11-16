@@ -1,6 +1,6 @@
-package list;
+package common;
 
-class KnotList<T> {
+public class KnotList<T> {
 
     private T obj;
     private KnotList<T> next;
