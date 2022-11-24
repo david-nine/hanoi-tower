@@ -1,6 +1,6 @@
 package list;
 
-import common.KnotList;
+import model.KnotList;
 
 public class LinkedListImpl<T> implements IList<T> {
 
