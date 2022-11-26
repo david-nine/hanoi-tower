@@ -39,8 +39,8 @@ public class DynamicPile<T> implements IPile<T> {
             returnElement = obj.getNext().getObj();
             this.last = obj;
             this.last.setNext(null);
+            this.counter--;
         }
-        this.counter--;
         return returnElement;
     }
 

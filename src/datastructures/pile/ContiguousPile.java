@@ -31,8 +31,9 @@ public class ContiguousPile<T> implements IPile<T> {
 
     @Override
     public T top() {
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
+        }
         return this.array[counter - 1];
     }
 

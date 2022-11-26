@@ -28,13 +28,14 @@ public class GameController {
         short destinationTower = getDestinationTower();
         if (!this.validator.validateValidateMove(gameInstance, originTower, destinationTower)) {
             this.play(gameInstance);
-        }
-        gameInstance.play(originTower, destinationTower);
-        gameInstance.showTowers();
-        if (!gameInstance.isFinish()) {
-            this.play(gameInstance);
         } else {
-            this.interactionInterface.showFinishMessage(gameInstance.getNumberOfMoves());
+            gameInstance.play(originTower, destinationTower);
+            gameInstance.showTowers();
+            if (!gameInstance.isFinish()) {
+                this.play(gameInstance);
+            } else {
+                this.interactionInterface.showFinishMessage(gameInstance.getNumberOfMoves());
+            }
         }
     }
 
