@@ -1,11 +1,14 @@
 package model;
 
-import list.IList;
-import list.ListBuilder;
-import pile.IPile;
-import pile.PileBuilder;
+import interfaces.InteractionInterface;
+import datastructures.list.IList;
+import datastructures.list.ListBuilder;
+import datastructures.pile.IPile;
+import datastructures.pile.PileBuilder;
 
 public class GameInstance {
+
+    private InteractionInterface interactionInterface;
 
     private short numberOfPlays;
 
@@ -13,25 +16,28 @@ public class GameInstance {
     private final IList<IPile<Ring>> towers;
 
     public GameInstance(StructureImplementationType implementationType, Short numberOfRings) {
+        this.interactionInterface = InteractionInterface.getInstance();
         this.numberOfRings = numberOfRings == null ? 3 : numberOfRings;
         this.towers = ListBuilder.builder()
                 .withImplementationType(implementationType)
-                .withDefaultSpaces(numberOfRings)
+                .withDefaultSize(numberOfRings)
                 .build();
-        this.createRings(implementationType, numberOfRings);
+        this.createPiles(implementationType);
+        this.createRings();
     }
 
-    public void buildTowers(StructureImplementationType structureImplementationType, Short numberOfRings) {
-        new GameInstance(structureImplementationType, numberOfRings);
-    }
-
-    private void createRings(StructureImplementationType structureImplementationType, short numberOfRings) {
-        for (int i = 0; i < numberOfRings; i++) {
+    private void createPiles(StructureImplementationType structureImplementationType) {
+        for (int i = 0; i < 3; i++) {
             this.towers.add(PileBuilder.builder() //
                     .withPileImplementationType(structureImplementationType) //
                     .withNumberOfRegisters(numberOfRings) //
-                    .build() //
-            );
+                    .build());
+        }
+    }
+
+    private void createRings() {
+        for (int i = numberOfRings; i > 0; i--) {
+            this.towers.get(0).push(new Ring((short) (i + 1)));
         }
     }
 
@@ -46,7 +52,9 @@ public class GameInstance {
 
     public void showTowers() {
         for (int i = 0; i < 3; i++) {
-            towers.toString();
+            this.interactionInterface.showMessage("Torre " + (i + 1));
+            String tower = towers.get(i).toString();
+            this.interactionInterface.showMessage(this.showTower(tower));
         }
     }
 
@@ -55,5 +63,24 @@ public class GameInstance {
             return true;
         }
         return false;
+    }
+
+    public int getNumberOfMoves() {
+        return this.numberOfPlays;
+    }
+
+    private String showTower(String tower) {
+        char[] charArray = tower.toCharArray();
+        short counter = 0;
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] == '\n') {
+                counter++;
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int j = 0; j < numberOfRings - counter; j++) {
+            stringBuilder.append(" |\n");
+        }
+        return stringBuilder.append(tower).toString();
     }
 }

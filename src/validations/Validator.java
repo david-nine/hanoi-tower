@@ -36,20 +36,25 @@ public class Validator {
             this.interactionInterface.invalidMoveFromIsEqualToTo();
             return false;
         }
-        if (game.getTop(from).getSize() > game.getTop(to).getSize()) {
+        if (!(game.getTop(to) == null) && game.getTop(from).getSize() > game.getTop(to).getSize()) {
             this.interactionInterface.invalidMoveFromRingIsGreaterThanTo();
             return false;
         }
         return true;
     }
 
-    public boolean validateTower(GameInstance game, short numberOfTower) {
-        if (numberOfTower < 1 || numberOfTower > 3) {
+    public boolean validateNumberOfTower(short numberOfTower) {
+        if (numberOfTower < 0 || numberOfTower > 2) {
             this.interactionInterface.towerNonexistent();
             return false;
         }
+        return true;
+    }
+
+    public boolean validateOriginTower(GameInstance game, short numberOfTower) {
         if (game.getTop(numberOfTower) == null) {
             this.interactionInterface.hasNoRing();
+            return false;
         }
         return true;
     }
@@ -62,7 +67,10 @@ public class Validator {
 
     void validateNumberOfRingsArgument(String numberOfRingsArgument) {
         try {
-            Short.valueOf(numberOfRingsArgument);
+            short numberOfRings = Short.parseShort(numberOfRingsArgument);
+            if (numberOfRings < 3) {
+                this.interactionInterface.invalidSecondArgumentShouldBeGreaterThan3();
+            }
         } catch (NumberFormatException e) {
             this.interactionInterface.invalidSecondArgument();
         }

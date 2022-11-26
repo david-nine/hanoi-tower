@@ -1,4 +1,4 @@
-package pile;
+package datastructures.pile;
 
 public interface IPile<T> {
 
@@ -10,9 +10,9 @@ public interface IPile<T> {
 
     int size();
 
-    boolean empty();
+    boolean isEmpty();
 
-    void release();
+    void clear();
 
     boolean isFull();
 

@@ -13,7 +13,8 @@ public class Ring {
     }
     // caso for meor, consome da esquerda
 
-    public String getRaw() {
+    @Override
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<|");
         this.addField(stringBuilder, this.size, '-');

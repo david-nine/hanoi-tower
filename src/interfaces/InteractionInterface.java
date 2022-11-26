@@ -52,7 +52,6 @@ public class InteractionInterface {
     private short getShort(String message) {
         System.out.print(message);
         short tower = sc.nextShort();
-        sc.close();
         return tower;
     }
 
@@ -76,6 +75,15 @@ public class InteractionInterface {
 
     public void invalidMoveFromRingIsGreaterThanTo() {
         this.invalidMove();
-        this.showMessage("Não se pode mover um anel maior em cioma de um menor");
+        this.showMessage("Não se pode mover um anel maior em cima de um menor");
+    }
+
+    public void showFinishMessage(int numberOfMoves) {
+        System.out.println(String.format("Ganhou em %s jogadas", numberOfMoves));
+    }
+
+    public void invalidSecondArgumentShouldBeGreaterThan3() {
+        this.showMessage("O número de anéis deve ser maior do que 3");
+        throw new RuntimeException();
     }
 }

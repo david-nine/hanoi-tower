@@ -1,4 +1,4 @@
-package list;
+package datastructures.list;
 
 public class ContiguousArrayListImpl<T> implements IList<T> {
 
@@ -68,7 +68,7 @@ public class ContiguousArrayListImpl<T> implements IList<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        return this.instance[index];
     }
 
     @Override

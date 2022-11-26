@@ -1,26 +1,26 @@
 package model;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum StructureImplementationType {
 
-    DYNAMIC("dinamica"),
+    DYNAMIC,
 
-    CONTIGUOUS("contigua");
+    CONTIGUOUS;
 
-    StructureImplementationType(String name) {
+    private static final Map<String, StructureImplementationType> MAP = new HashMap<>();
+
+    static {
+        MAP.put("dinamica", StructureImplementationType.DYNAMIC);
+        MAP.put("continua", StructureImplementationType.CONTIGUOUS);
+    }
+
+    private StructureImplementationType() {
+
     }
 
     public static StructureImplementationType toEnum(String name) {
-        if (name != null && Arrays.stream(StructureImplementationType.values()) //
-                .anyMatch(value -> Objects.equals( //
-                        value.toString(), //
-                        name.toLowerCase() //
-                ))) {
-            return StructureImplementationType.valueOf(name.toLowerCase());
-        }
-        return null;
+        return MAP.get(name);
     }
-
 }

@@ -1,4 +1,4 @@
-package list;
+package datastructures.list;
 
 public interface IList<T> {
 

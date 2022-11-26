@@ -1,8 +1,8 @@
-package list;
+package datastructures.list;
 
 import model.Ring;
 import model.StructureImplementationType;
-import pile.IPile;
+import datastructures.pile.IPile;
 
 public class ListBuilder {
 
@@ -17,9 +17,9 @@ public class ListBuilder {
 
     public IList<IPile<Ring>> build() {
         if (StructureImplementationType.CONTIGUOUS.equals(this.type)) {
-            return new ContiguousArrayListImpl();
+            return new ContiguousArrayListImpl<>();
         } else {
-            return new LinkedListImpl();
+            return new LinkedListImpl<>();
         }
     }
 
@@ -28,7 +28,7 @@ public class ListBuilder {
         return this;
     }
 
-    public ListBuilder withDefaultSpaces(short numberOfRings) {
+    public ListBuilder withDefaultSize(Short numberOfRings) {
         this.numberOfRings = numberOfRings;
         return this;
     }

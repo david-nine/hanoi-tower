@@ -1,4 +1,4 @@
-package list;
+package datastructures.list;
 
 import model.KnotList;
 

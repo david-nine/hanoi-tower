@@ -1,4 +1,4 @@
-package pile;
+package datastructures.pile;
 
 import model.Ring;
 import model.StructureImplementationType;

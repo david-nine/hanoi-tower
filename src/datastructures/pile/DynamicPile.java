@@ -1,4 +1,4 @@
-package pile;
+package datastructures.pile;
 
 import model.KnotList;
 
@@ -11,12 +11,12 @@ public class DynamicPile<T> implements IPile<T> {
     public DynamicPile() {
         this.counter = 0;
         this.first = new KnotList<>();
-        this.last = new KnotList<>();
+        this.last = this.first;
     }
 
     @Override
     public void push(T obj) {
-        if (this.counter == 0) {
+        if (this.isEmpty()) {
             this.first.setObj(obj);
             this.last = this.first;
         } else {
@@ -28,10 +28,9 @@ public class DynamicPile<T> implements IPile<T> {
 
     @Override
     public T pop() {
-        T returnElement = this.first.getObj();
+        T returnElement = this.last.getObj();
         if (this.counter <= 1) {
-            this.first = null;
-            this.last = null;
+            this.clear();
         } else {
             KnotList<T> obj = this.first;
             while (obj.getNext() != this.last) {
@@ -47,10 +46,7 @@ public class DynamicPile<T> implements IPile<T> {
 
     @Override
     public T top() {
-        if (this.last != null) {
-            return this.last.getObj();
-        }
-        return null;
+        return this.last.getObj();
     }
 
     @Override
@@ -59,15 +55,15 @@ public class DynamicPile<T> implements IPile<T> {
     }
 
     @Override
-    public boolean empty() {
+    public boolean isEmpty() {
         return this.counter == 0;
     }
 
     @Override
-    public void release() {
+    public void clear() {
         this.counter = 0;
         this.first = new KnotList<>();
-        this.last = new KnotList<>();
+        this.last = this.first;
     }
 
     @Override
@@ -77,13 +73,19 @@ public class DynamicPile<T> implements IPile<T> {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        DynamicPile<String> stringPile = new DynamicPile<>();
         if (this.counter != 0) {
             KnotList<T> obj = this.first;
             while (obj.getNext() != null) {
-                stringBuilder.append(obj.getObj().toString());
+                stringPile.push(obj.getObj().toString() + "\n");
                 obj = obj.getNext();
             }
+            stringPile.push(obj.getObj().toString() + "\n");
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        while (stringPile.top() != null) {
+            stringBuilder.append(stringPile.pop());
         }
         return stringBuilder.toString();
     }
