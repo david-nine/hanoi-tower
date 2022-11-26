@@ -40,6 +40,10 @@ public class GameInstance {
         this.numberOfPlays++;
     }
 
+    public Ring getTop(short tower) {
+        return this.towers.get(tower).top();
+    }
+
     public void showTowers() {
         for (int i = 0; i < 3; i++) {
             towers.toString();

@@ -30,16 +30,19 @@ public class InteractionInterface {
     }
 
     public void invalidImplementationTypeOption() {
-        throw new RuntimeException(String.format("Opção inválida! As opções são %s e %s", //
+        this.showMessage(String.format("Opção inválida! As opções são %s e %s", //
                 DYNAMIC.name(), CONTIGUOUS.name()));
+        throw new RuntimeException();
     }
 
     public void informArgument() {
-        throw new RuntimeException("Informe o tipo da implementação da pilha");
+        this.showMessage("Informe o tipo da implementação da pilha");
+        throw new RuntimeException();
     }
 
     public void invalidSecondArgument() {
-        throw new RuntimeException("O segundo argumento deve ser um número");
+        this.showMessage("O segundo argumento deve ser um número");
+        throw new RuntimeException();
     }
 
     public void showMessage(String message) {
@@ -53,4 +56,26 @@ public class InteractionInterface {
         return tower;
     }
 
+    public void invalidMoveFromIsEqualToTo() {
+        this.invalidMove();
+        this.showMessage("Não é permitido mover para a mesma torre");
+    }
+
+    private void invalidMove() {
+        this.showMessage("Jogada inválida!");
+    }
+
+    public void towerNonexistent() {
+        this.showMessage("O número da torre deve ser 1, 2 ou 3");
+    }
+
+    public void hasNoRing() {
+        this.invalidMove();
+        this.showMessage("Não tem nenhum anel nesta torre");
+    }
+
+    public void invalidMoveFromRingIsGreaterThanTo() {
+        this.invalidMove();
+        this.showMessage("Não se pode mover um anel maior em cioma de um menor");
+    }
 }

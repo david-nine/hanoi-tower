@@ -1,6 +1,7 @@
 package validations;
 
 import interfaces.InteractionInterface;
+import model.GameInstance;
 import model.StructureImplementationType;
 
 public class Validator {
@@ -28,6 +29,29 @@ public class Validator {
                 this.validateNumberOfRingsArgument(arguments[1]);
             }
         }
+    }
+
+    public boolean validateValidateMove(GameInstance game, short from, short to) {
+        if (from == to) {
+            this.interactionInterface.invalidMoveFromIsEqualToTo();
+            return false;
+        }
+        if (game.getTop(from).getSize() > game.getTop(to).getSize()) {
+            this.interactionInterface.invalidMoveFromRingIsGreaterThanTo();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateTower(GameInstance game, short numberOfTower) {
+        if (numberOfTower < 1 || numberOfTower > 3) {
+            this.interactionInterface.towerNonexistent();
+            return false;
+        }
+        if (game.getTop(numberOfTower) == null) {
+            this.interactionInterface.hasNoRing();
+        }
+        return true;
     }
 
     void validateImplementationType(String implementationType) {

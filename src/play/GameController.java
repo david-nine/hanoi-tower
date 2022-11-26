@@ -28,12 +28,6 @@ public class GameController {
     public void startGame(String[] args) {
         Validator.getInstance().validateArguments(args);
         GameInstance gameInstance = new GameInstance(StructureImplementationType.toEnum(args[0]), Short.valueOf(args[1]));
-        while (!gameInstance.isFinish()) {
-            short originTower = this.interactionInterface.getOriginTower();
-            short destinationTower = this.interactionInterface.getDestinationTower();
-            if (originTower == destinationTower) {
-                // TODO Validar os unputs das jogadas
-            }
-        }
+        gameInstance.showTowers();
     }
 }
