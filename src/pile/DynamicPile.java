@@ -15,7 +15,7 @@ public class DynamicPile<T> implements IPile<T> {
     }
 
     @Override
-    public void push(T obj) throws Exception {
+    public void push(T obj) {
         if (this.counter == 0) {
             this.first.setObj(obj);
             this.last = this.first;
@@ -27,7 +27,7 @@ public class DynamicPile<T> implements IPile<T> {
     }
 
     @Override
-    public T pop() throws Exception {
+    public T pop() {
         T returnElement = this.first.getObj();
         if (this.counter <= 1) {
             this.first = null;
@@ -46,7 +46,7 @@ public class DynamicPile<T> implements IPile<T> {
     }
 
     @Override
-    public T top() throws Exception {
+    public T top() {
         if (this.last != null) {
             return this.last.getObj();
         }
@@ -54,7 +54,7 @@ public class DynamicPile<T> implements IPile<T> {
     }
 
     @Override
-    public int size() throws Exception {
+    public int size() {
         return this.counter;
     }
 
@@ -73,5 +73,18 @@ public class DynamicPile<T> implements IPile<T> {
     @Override
     public boolean isFull() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (this.counter != 0) {
+            KnotList<T> obj = this.first;
+            while (obj.getNext() != null) {
+                stringBuilder.append(obj.getObj().toString());
+                obj = obj.getNext();
+            }
+        }
+        return stringBuilder.toString();
     }
 }

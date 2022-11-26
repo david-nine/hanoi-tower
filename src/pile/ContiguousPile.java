@@ -1,5 +1,7 @@
 package pile;
 
+import java.util.Arrays;
+
 public class ContiguousPile<T> implements IPile<T> {
 
     private int counter = -1;
@@ -15,7 +17,7 @@ public class ContiguousPile<T> implements IPile<T> {
     }
 
     @Override
-    public void push(T obj) throws Exception {
+    public void push(T obj) {
         if (this.counter < this.vet.length && !isFull()) {
             this.vet[++this.counter] = obj;
         }
@@ -59,5 +61,14 @@ public class ContiguousPile<T> implements IPile<T> {
     @Override
     public boolean isFull() {
         return counter == vet.length - 1;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < this.counter; i++) {
+            stringBuilder.append(this.vet[i].toString());
+        }
+        return stringBuilder.toString();
     }
 }

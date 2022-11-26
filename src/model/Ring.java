@@ -13,20 +13,17 @@ public class Ring {
     }
     // caso for meor, consome da esquerda
 
-    public String getRaw(short maxSize) {
+    public String getRaw() {
         StringBuilder stringBuilder = new StringBuilder();
-        addSpaces(stringBuilder, (short) (maxSize - size));
-        stringBuilder.append("<");
-        addSpaces(stringBuilder, size);
-        stringBuilder.append("|");
-        addSpaces(stringBuilder, size);
+        stringBuilder.append("<|");
+        this.addField(stringBuilder, this.size, '-');
         stringBuilder.append(">");
         return stringBuilder.toString();
     }
 
-    private void addSpaces(StringBuilder stringBuilder, short quantity) {
+    private void addField(StringBuilder stringBuilder, short quantity, char character) {
         for (int i = 0; i < quantity; i++) {
-            stringBuilder.append(" ");
+            stringBuilder.append(character);
         }
     }
 }

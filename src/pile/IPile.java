@@ -2,12 +2,18 @@ package pile;
 
 public interface IPile<T> {
 
-    void push(T obj) throws Exception;
-    T pop () throws Exception;
-    T top () throws Exception;
-    int size() throws Exception;
+    void push(T obj);
+
+    T pop();
+
+    T top();
+
+    int size();
+
     boolean empty();
+
     void release();
+
     boolean isFull();
 
 }

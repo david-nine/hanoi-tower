@@ -2,6 +2,9 @@ package interfaces;
 
 import java.util.Scanner;
 
+import static model.StructureImplementationType.CONTIGUOUS;
+import static model.StructureImplementationType.DYNAMIC;
+
 public class InteractionInterface {
 
     private static InteractionInterface instance;
@@ -26,8 +29,17 @@ public class InteractionInterface {
         return getShort("Para qual torre você quer mexer?: ");
     }
 
-    public short getQuantityOfTowers() {
-        return getShort("Com quantas torres quer jogar?: ");
+    public void invalidImplementationTypeOption() {
+        throw new RuntimeException(String.format("Opção inválida! As opções são %s e %s", //
+                DYNAMIC.name(), CONTIGUOUS.name()));
+    }
+
+    public void informArgument() {
+        throw new RuntimeException("Informe o tipo da implementação da pilha");
+    }
+
+    public void invalidSecondArgument() {
+        throw new RuntimeException("O segundo argumento deve ser um número");
     }
 
     public void showMessage(String message) {
