@@ -2,7 +2,9 @@
 *.class
 
 .idea/
+out/
 hanoiTower.iml
+hanoi-tower.iml
 *META-INF/*
 
 # Log file

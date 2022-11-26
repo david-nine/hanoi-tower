@@ -7,7 +7,7 @@ public enum StructureImplementationType {
 
     DYNAMIC("dinamica"),
 
-    CONTIGUOUS("continua");
+    CONTIGUOUS("contigua");
 
     public final String value;
 
@@ -15,7 +15,7 @@ public enum StructureImplementationType {
 
     static {
         MAP.put("dinamica", StructureImplementationType.DYNAMIC);
-        MAP.put("continua", StructureImplementationType.CONTIGUOUS);
+        MAP.put("contigua", StructureImplementationType.CONTIGUOUS);
     }
 
     private StructureImplementationType(String value) {
