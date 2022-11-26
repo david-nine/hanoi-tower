@@ -31,7 +31,7 @@ public class InteractionInterface {
 
     public void invalidImplementationTypeOption() {
         this.showMessage(String.format("Opção inválida! As opções são %s e %s", //
-                DYNAMIC.name(), CONTIGUOUS.name()));
+                DYNAMIC.value, CONTIGUOUS.value));
         throw new RuntimeException();
     }
 

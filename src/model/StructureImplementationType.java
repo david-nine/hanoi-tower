@@ -5,9 +5,11 @@ import java.util.Map;
 
 public enum StructureImplementationType {
 
-    DYNAMIC,
+    DYNAMIC("dinamica"),
 
-    CONTIGUOUS;
+    CONTIGUOUS("continua");
+
+    public final String value;
 
     private static final Map<String, StructureImplementationType> MAP = new HashMap<>();
 
@@ -16,8 +18,8 @@ public enum StructureImplementationType {
         MAP.put("continua", StructureImplementationType.CONTIGUOUS);
     }
 
-    private StructureImplementationType() {
-
+    private StructureImplementationType(String value) {
+        this.value = value;
     }
 
     public static StructureImplementationType toEnum(String name) {
