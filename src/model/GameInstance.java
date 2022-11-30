@@ -8,8 +8,8 @@ import datastructures.pile.PileBuilder;
 
 public class GameInstance {
 
-    private static final int DEFAULT_RINGS = 5;
-    private static final int NUMBER_OF_TOWERS = 3;
+    public static final int DEFAULT_RINGS = 5;
+    public static final int NUMBER_OF_TOWERS = 3;
     private InteractionInterface interactionInterface;
 
     private short numberOfPlays;
