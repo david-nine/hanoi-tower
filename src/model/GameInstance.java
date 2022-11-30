@@ -8,6 +8,8 @@ import datastructures.pile.PileBuilder;
 
 public class GameInstance {
 
+    private static final int DEFAULT_RINGS = 5;
+    private static final int NUMBER_OF_TOWERS = 3;
     private InteractionInterface interactionInterface;
 
     private short numberOfPlays;
@@ -17,7 +19,7 @@ public class GameInstance {
 
     public GameInstance(StructureImplementationType implementationType, Short numberOfRings) {
         this.interactionInterface = InteractionInterface.getInstance();
-        this.numberOfRings = numberOfRings == null ? 3 : numberOfRings;
+        this.numberOfRings = numberOfRings == null ? DEFAULT_RINGS : numberOfRings;
         this.towers = ListBuilder.builder()
                 .withImplementationType(implementationType)
                 .withDefaultSize(numberOfRings)
@@ -27,7 +29,7 @@ public class GameInstance {
     }
 
     private void createPiles(StructureImplementationType structureImplementationType) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_OF_TOWERS; i++) {
             this.towers.add(PileBuilder.builder() //
                     .withPileImplementationType(structureImplementationType) //
                     .withNumberOfRegisters(numberOfRings) //
@@ -51,7 +53,7 @@ public class GameInstance {
     }
 
     public void showTowers() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_OF_TOWERS; i++) {
             this.interactionInterface.showMessage("Torre " + (i + 1));
             String tower = towers.get(i).toString();
             this.interactionInterface.showMessage(this.showTower(tower));

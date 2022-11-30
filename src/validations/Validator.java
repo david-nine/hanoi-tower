@@ -5,6 +5,7 @@ import model.GameInstance;
 import model.StructureImplementationType;
 
 public class Validator {
+    public static final int MINIMUM_OF_RINGS = 3;
     private static Validator instance;
 
     InteractionInterface interactionInterface;
@@ -68,7 +69,7 @@ public class Validator {
     void validateNumberOfRingsArgument(String numberOfRingsArgument) {
         try {
             short numberOfRings = Short.parseShort(numberOfRingsArgument);
-            if (numberOfRings < 3) {
+            if (numberOfRings < MINIMUM_OF_RINGS) {
                 this.interactionInterface.invalidSecondArgumentShouldBeGreaterThan3();
             }
         } catch (NumberFormatException e) {
